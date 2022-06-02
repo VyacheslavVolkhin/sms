@@ -9,11 +9,6 @@
     from {opacity: 0;transform: translate(0, -50px);}
     to {opacity: 1;transform: translate(0, 0px);}
 }
-.i {
-	display: inline-block;
-	vertical-align: middle;
-	transition: none;
-}
 .img-bg-cover,
 .img-bg-contain {
     display: block;
@@ -47,18 +42,30 @@
     }
 }
 .js-btn-toggle.active+.js-popup-block {display: block !important;}
-.js-popup-block {-webkit-animation: fadein ease 0.3s;animation: fadein ease 0.3s;}
+.js-popup-block {animation: fadein ease 0.3s;}
 .js-tab-block {
-	display: none;
-	animation: fadein ease 0.2s;
-	&.active {
-		display: block;
-	}
+    display: none;
+    animation: fadein ease 0.2s;
+    &.active {
+        display: block;
+    }
 }
 .items-wrap {
     display: flex;
     flex-wrap: wrap;
     position: relative;
+    &.show-all {
+        .item-wrap.wrap-hidden {
+            display: block;
+        }
+        .wrap-more {
+            a {
+                &:after {
+                    content: attr(data-hide);
+                }
+            }
+        }
+    }
 }
 .item-wrap {
     width: 100%;
@@ -76,34 +83,48 @@
                 display: block;
             }
         }
+        a {
+            &:after {
+                content: attr(data-show);
+            }
+        }
+    }
+    &.wrap-hidden {
+        display: none;
+        animation: fadein ease 0.2s;
     }
 }
-.slider-wrap,
-.slider,
-.sl-wrap {
-    position: relative;
-    line-height: 1;
+.item-tile,
+.tile-outer-wrap,
+.tile-inner-wrap,
+.tile-photo-wrap,
+.tile-info-wrap,
+.tile-text-wrap,
+.tile-title-wrap,
+.tile-desc-wrap,
+.tile-photo,
+.tile-info,
+.tile-text,
+.tile-ico,
+.tile-title,
+.tile-desc {
     display: block;
+    position: relative;
+    transition: all ease 0.2s;
 }
-.sl-wrap~.sl-wrap {
-    display: none;
+.tile-link {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
 }
-.no-mbottom {
-    margin-bottom: 0 !important;
-}
-.no-mtop {
-    margin-top: 0 !important;
-}
-.elm-hidden {
-    display: none !important;
-}
-@media (max-width: 1023px) {
-    .elm-hidden-mobile {
-        display: none !important;
-    }
-}
-@media (min-width: 1024px) {
-    .elm-hidden-desktop {
-        display: none !important;
+a.link-main, .link-main {
+    text-decoration: none;
+    border-bottom: 1px solid;
+    &:hover {
+        border-bottom: none;
     }
 }
